@@ -1,5 +1,5 @@
 # Guía de Ejecución
-Este proyecto usa Docker Compose para configurar y ejecutar un contenedor de la aplicación y un contenedor de base de datos PostgreSQL. A continuación, se detallan los pasos para ejecutar el proyecto, conectarse a la base de datos y acceder a la aplicación.
+Este proyecto usa Docker Compose para configurar y ejecutar un contenedor para el frontend, otro controlador para el backend y un contenedor de base de datos PostgreSQL. A continuación, se detallan los pasos para ejecutar el proyecto, conectarse a la base de datos y acceder a la aplicación.
 
 ## Requisitos Previos
 Antes de comenzar, asegúrate de tener instalados los siguientes programas:
