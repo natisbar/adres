@@ -54,7 +54,6 @@ export class EditAcquisitionComponent {
       fecha: formValue.fecha,
       proveedor: formValue.proveedor,
       documentacion: formValue.documentacion,
-      // activo: Boolean(formValue.activo)
     }
     return newAcquisition;
   }
@@ -95,7 +94,6 @@ export class EditAcquisitionComponent {
         fecha: new FormControl(fechaISO, []),
         proveedor: new FormControl(this.acquisition.proveedor, []),
         documentacion: new FormControl(this.acquisition.documentacion, []),
-        // activo: new FormControl(this.acquisition.activo, []),
       });
     }
   }
@@ -110,5 +108,4 @@ export class EditAcquisitionComponent {
   get fechaField() { return this.formAplicacion.get('fecha'); }
   get proveedorField() { return this.formAplicacion.get('proveedor'); }
   get documentacionField() { return this.formAplicacion.get('documentacion'); }
-  // get activeField() { return this.formAplicacion.get('active'); }
 }

@@ -39,11 +39,9 @@ export class AddAcquisitionComponent {
       tipoBienServicio: formValue.tipoBienServicio,
       cantidad: Number(formValue.cantidad),
       valorUnitario: Number(formValue.valorUnitario),
-      // valorTotal: Number(formValue.valorTotal),
       fecha: formValue.fecha,
       proveedor: formValue.proveedor,
       documentacion: formValue.documentacion,
-      // activo: Boolean(formValue.activo)
     }
     return newAcquisition;
   }
@@ -86,11 +84,9 @@ export class AddAcquisitionComponent {
       tipoBienServicio: new FormControl(null, [Validators.required,Validators.minLength(3)]),
       cantidad: new FormControl(null, [Validators.required]),
       valorUnitario: new FormControl(null, [Validators.required, Validators.min(1)]),
-      // valorTotal: new FormControl(null, [Validators.required, Validators.min(1)]),
       fecha: new FormControl(null, [Validators.required]),
       proveedor: new FormControl(null, [Validators.required, Validators.minLength(3)]),
       documentacion: new FormControl(null, [Validators.required, Validators.minLength(3)]),
-      // activo: new FormControl(null, []),
     });
   }
 
@@ -99,9 +95,7 @@ export class AddAcquisitionComponent {
   get tipoBienServicioField() { return this.formAplicacion.get('tipoBienServicio'); }
   get cantidadField() { return this.formAplicacion.get('cantidad'); }
   get valorUnitarioField() { return this.formAplicacion.get('valorUnitario'); }
-  // get valorTotalField() { return this.formAplicacion.get('valorTotal'); }
   get fechaField() { return this.formAplicacion.get('fecha'); }
   get proveedorField() { return this.formAplicacion.get('proveedor'); }
   get documentacionField() { return this.formAplicacion.get('documentacion'); }
-  get activeField() { return this.formAplicacion.get('active'); }
 }
