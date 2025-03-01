@@ -1,0 +1,131 @@
+<div class="text-center m-8">
+    <button (click)="openModal()" class="text-white bg-[#283557] hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Agregar <i class="fa-solid fa-plus"></i>
+    </button>
+</div>
+
+<div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 relative z-50">
+
+      <button (click)="closeModal()" class="absolute top-2 right-2 text-gray-500 text-2xl">&times;</button>
+
+      <h2 class="text-xl font-semibold mb-4">Nueva Adquisición</h2>
+
+      <form id="form-aplicacion" [formGroup]="formAplicacion" #myForm="ngForm">
+        <div class="grid grid-cols-2 gap-4">
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Presupuesto</label>
+            <input
+                type="text"
+                formControlName="presupuesto"
+                class="w-full p-2 border rounded"
+                [class.is-invalid]="presupuestoField!.touched && !presupuestoField!.valid"
+                [class.is-valid]="presupuestoField!.touched && presupuestoField!.valid">
+          <div class="mensaje-error" *ngIf="presupuestoField?.invalid && (presupuestoField?.dirty || presupuestoField?.touched)">
+            <div *ngIf="presupuestoField?.errors?.['required']">El campo es obligatorio</div>
+            <!-- <div *ngIf="presupuestoField?.errors?.['invalidDecimal']">Ingrese un monto válido (solo números enteros o decimales)</div> -->
+          </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Unidad</label>
+            <input type="text" formControlName="unidad" class="w-full p-2 border rounded"[class.is-valid]="unidadField!.valid"
+            [class.is-invalid]="unidadField!.touched && !unidadField!.valid"
+            [class.is-valid]="unidadField!.touched && unidadField!.valid">
+            <div class="mensaje-error" *ngIf="!unidadField!.valid && (unidadField!.dirty || unidadField!.touched)">
+                <div *ngIf="unidadField!.errors?.['required']">{{ reqFieldName }}</div>
+                <!-- <div *ngIf="unidadField!.errors?.['stringValid']">Ingrese un valor válido (alfanumerico)</div> -->
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Tipo de Bien o Servicio</label>
+            <input type="text" formControlName="tipoBienServicio" class="w-full p-2 border rounded"[class.is-valid]="tipoBienServicioField!.valid"
+            [class.is-invalid]="tipoBienServicioField!.touched && !tipoBienServicioField!.valid"
+            [class.is-valid]="tipoBienServicioField!.touched && tipoBienServicioField!.valid">
+            <div class="mensaje-error" *ngIf="!tipoBienServicioField!.valid && (tipoBienServicioField!.dirty || tipoBienServicioField!.touched)">
+                <div *ngIf="tipoBienServicioField!.errors?.['required']">{{ reqFieldName }}</div>
+                <!-- <div *ngIf="tipoBienServicioField!.errors?.['stringValid']">Ingrese un valor válido (alfanumerico)</div> -->
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Cantidad</label>
+            <input type="number" formControlName="cantidad" class="w-full p-2 border rounded"
+              [class.is-valid]="cantidadField?.valid"
+              [class.is-invalid]="cantidadField?.touched && !cantidadField?.valid">
+            <div class="mensaje-error" *ngIf="cantidadField?.invalid && (cantidadField?.dirty || cantidadField?.touched)">
+              <div *ngIf="cantidadField?.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="cantidadField?.errors?.['moneyAmountValidator']">Ingrese un número válido</div> -->
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Valor Unitario</label>
+            <input type="number" formControlName="valorUnitario" class="w-full p-2 border rounded"
+              [class.is-valid]="valorUnitarioField?.valid"
+              [class.is-invalid]="valorUnitarioField?.touched && !valorUnitarioField?.valid">
+            <div class="mensaje-error" *ngIf="valorUnitarioField?.invalid && (valorUnitarioField?.dirty || valorUnitarioField?.touched)">
+              <div *ngIf="valorUnitarioField?.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="valorUnitarioField?.errors?.['invalidDecimal']">Ingrese un monto válido (solo números enteros o decimales)</div> -->
+            </div>
+          </div>
+
+          <!-- <div>
+            <label class="block text-sm font-medium text-gray-700">Valor Total</label>
+            <input type="number" formControlName="valorTotal" class="w-full p-2 border rounded"
+              [class.is-valid]="valorTotalField?.valid"
+              [class.is-invalid]="valorTotalField?.touched && !valorTotalField?.valid">
+            <div class="mensaje-error" *ngIf="valorTotalField?.invalid && (valorTotalField?.dirty || valorTotalField?.touched)">
+              <div *ngIf="valorTotalField?.errors?.['required']">El campo es obligatorio</div>
+              <div *ngIf="valorTotalField?.errors?.['pattern']">Ingrese un número válido</div>
+            </div>
+          </div> -->
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Fecha</label>
+            <input type="date" formControlName="fecha" class="w-full p-2 border rounded"[class.is-valid]="fechaField!.valid"
+            [class.is-invalid]="fechaField!.touched && !fechaField!.valid"
+            [class.is-valid]="fechaField!.touched && fechaField!.valid">
+            <div class="mensaje-error" *ngIf="!fechaField!.valid && (fechaField!.dirty || fechaField!.touched)">
+                <div *ngIf="fechaField!.errors?.['required']">{{ reqFieldName }}</div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Proveedor</label>
+            <input type="text" formControlName="proveedor" class="w-full p-2 border rounded"[class.is-valid]="proveedorField!.valid"
+            [class.is-invalid]="proveedorField!.touched && !proveedorField!.valid">
+            <div class="mensaje-error" *ngIf="!proveedorField!.valid && (proveedorField!.dirty || proveedorField!.touched)">
+                <div *ngIf="proveedorField!.errors?.['required']">{{ reqFieldName }}</div>
+                <!-- <div *ngIf="proveedorField!.errors?.['regularCharacterWithSymbolValidator']">Ingrese un valor válido (alfanumerico)</div> -->
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Documentación</label>
+            <input type="text" formControlName="documentacion" class="w-full p-2 border rounded"[class.is-valid]="documentacionField!.valid"
+            [class.is-invalid]="documentacionField!.touched && !documentacionField!.valid">
+            <div class="mensaje-error" *ngIf="!documentacionField!.valid && (documentacionField!.dirty || documentacionField!.touched)">
+                <div *ngIf="documentacionField!.errors?.['required']">{{ reqFieldName }}</div>
+                <!-- <div *ngIf="documentacionField!.errors?.['regularCharacterWithSymbolValidator']">Ingrese un valor válido (alfanumerico)</div> -->
+            </div>
+          </div>
+
+          <!-- <div class="flex items-center">
+            <input type="checkbox" formControlName="activo" class="mr-2">
+            <label class="text-sm font-medium text-gray-700">Activo</label>
+          </div> -->
+
+        </div>
+
+        <div class="mt-4 flex justify-end">
+          <button (click)="addAcquisition()" type="submit" class="text-white bg-[#13D5B0]  hover:bg-[#5068B2] focus:outline-none focus:ring-4 focus:ring-[#13D5B0] font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+            Guardar
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>

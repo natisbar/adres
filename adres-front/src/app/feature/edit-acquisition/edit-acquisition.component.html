@@ -1,0 +1,122 @@
+<div class="modal-content bg-white p-6 rounded-lg shadow-lg">
+  <h2 class="text-xl font-semibold">Editar adquisición</h2>
+
+  <form id="form-aplicacion" [formGroup]="formAplicacion" #myForm="ngForm">
+      <div class="grid grid-cols-2 gap-4">
+
+          <div>
+              <label class="block text-sm font-medium text-gray-700">Presupuesto</label>
+              <input type="number" formControlName="presupuesto" class="w-full p-2 border rounded"
+              [ngClass]="{
+                  'is-valid': presupuestoField?.valid && presupuestoField?.touched,
+                  'is-invalid': presupuestoField?.touched && !presupuestoField?.valid
+                  }"
+              />
+            <div class="mensaje-error" *ngIf="presupuestoField?.invalid && (presupuestoField?.dirty || presupuestoField?.touched)">
+              <div *ngIf="presupuestoField?.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="presupuestoField?.errors?.['invalidAmount']">Ingrese un monto válido (solo números, máx. 12 dígitos)</div> -->
+            </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Unidad</label>
+          <input type="text" formControlName="unidad" class="w-full p-2 border rounded"
+          [class.is-invalid]="unidadField!.touched && !unidadField!.valid"
+          [class.is-valid]="unidadField?.valid">
+          <div class="mensaje-error" *ngIf="!unidadField!.valid && (unidadField!.dirty || unidadField!.touched)">
+              <div *ngIf="unidadField!.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="unidadField!.errors?.['stringValid']">El campo debe ser texto</div> -->
+          </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Tipo de Bien o Servicio</label>
+          <input type="text" formControlName="tipoBienServicio" class="w-full p-2 border rounded"
+          [class.is-invalid]="tipoBienServicioField!.touched && !tipoBienServicioField!.valid"
+          [class.is-valid]="tipoBienServicioField?.valid">
+          <div class="mensaje-error" *ngIf="!tipoBienServicioField!.valid && (tipoBienServicioField!.dirty || tipoBienServicioField!.touched)">
+              <div *ngIf="tipoBienServicioField!.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="tipoBienServicioField!.errors?.['stringValid']">El campo debe ser texto</div> -->
+          </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Cantidad</label>
+          <input type="number" formControlName="cantidad" class="w-full p-2 border rounded"
+          [class.is-valid]="cantidadField?.valid"
+          [class.is-invalid]="cantidadField?.touched && !cantidadField?.valid">
+          <div class="mensaje-error" *ngIf="cantidadField?.invalid && (cantidadField?.dirty || cantidadField?.touched)">
+              <div *ngIf="cantidadField?.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="cantidadField?.errors?.['pattern']">Ingrese un valor válido</div> -->
+          </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Valor Unitario</label>
+          <input type="number" formControlName="valorUnitario" class="w-full p-2 border rounded"
+          [class.is-valid]="valorUnitarioField?.valid"
+          [class.is-invalid]="valorUnitarioField?.touched && !valorUnitarioField?.valid">
+          <div class="mensaje-error" *ngIf="valorUnitarioField?.invalid && (valorUnitarioField?.dirty || valorUnitarioField?.touched)">
+              <div *ngIf="valorUnitarioField?.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="valorUnitarioField?.errors?.['pattern']">Ingrese un valor válido</div> -->
+          </div>
+          </div>
+
+          <!-- <div>
+          <label class="block text-sm font-medium text-gray-700">Valor Total</label>
+          <input type="number" formControlName="valorTotal" class="w-full p-2 border rounded"
+          [class.is-valid]="valorTotalField?.valid"
+          [class.is-invalid]="valorTotalField?.touched && !valorTotalField?.valid">
+          <div class="mensaje-error" *ngIf="valorTotalField?.invalid && (valorTotalField?.dirty || valorTotalField?.touched)">
+              <div *ngIf="valorTotalField?.errors?.['required']">El campo es obligatorio</div>
+              <div *ngIf="valorTotalField?.errors?.['pattern']">Ingrese un número válido</div>
+          </div>
+          </div> -->
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Fecha</label>
+          <input type="date" formControlName="fecha" class="w-full p-2 border rounded"
+          [class.is-invalid]="fechaField!.touched && !fechaField!.valid"
+          [class.is-valid]="fechaField?.valid">
+          <div class="mensaje-error" *ngIf="!fechaField!.valid && (fechaField!.dirty || fechaField!.touched)">
+              <div *ngIf="fechaField!.errors?.['required']">El campo es obligatorio</div>
+          </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Proveedor</label>
+          <input type="text" formControlName="proveedor" class="w-full p-2 border rounded"
+          [class.is-invalid]="proveedorField!.touched && !proveedorField!.valid"
+          [class.is-valid]="proveedorField?.valid">
+          <div class="mensaje-error" *ngIf="!proveedorField!.valid && (proveedorField!.dirty || proveedorField!.touched)">
+              <div *ngIf="proveedorField!.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="proveedorField!.errors?.['stringValid']">El campo debe ser texto</div> -->
+          </div>
+          </div>
+
+          <div>
+          <label class="block text-sm font-medium text-gray-700">Documentación</label>
+          <input type="text" formControlName="documentacion" class="w-full p-2 border rounded"
+          [class.is-invalid]="documentacionField!.touched && !documentacionField!.valid"
+          [class.is-valid]="documentacionField?.valid">
+          <div class="mensaje-error" *ngIf="!documentacionField!.valid && (documentacionField!.dirty || documentacionField!.touched)">
+              <div *ngIf="documentacionField!.errors?.['required']">El campo es obligatorio</div>
+              <!-- <div *ngIf="documentacionField!.errors?.['stringValid']">El campo debe ser texto</div> -->
+          </div>
+          </div>
+
+          <div class="flex items-center">
+          <input type="checkbox" formControlName="activo" class="mr-2">
+          <label class="text-sm font-medium text-gray-700">Activo</label>
+          </div>
+
+      </div>
+
+      <div class="mt-4 flex justify-end">
+          <button (click)="editAcquisition()" type="submit" class="m-2 px-4 py-2 bg-[#13D5B0]  hover:bg-[#5068B2] focus:outline-none focus:ring-4 focus:ring-[#13D5B0] text-white rounded-full">Guardar</button>
+          <button (click)="closeModal()" class="m-2 py-2 px-4 bg-gray-200 text-gray-700 hover:bg-[#929395] rounded-full">
+              Cancel
+            </button>
+      </div>
+  </form>
+</div>

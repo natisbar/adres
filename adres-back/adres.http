@@ -1,0 +1,6 @@
+@adres_HostAddress = http://localhost:5192
+
+GET {{adres_HostAddress}}/api/adquisicion/
+Accept: application/json
+
+###

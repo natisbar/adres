@@ -1,0 +1,42 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  adres:
+    build:
+      context: adres-back
+      args:
+        - configuration=Debug
+    ports:
+      - 8080:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CONNECTION_STRING=Host=db;Port=5432;Username=postgres;Password=1234;Database=adres;
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+    networks:
+      - app-network
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=adres
+    ports:
+      - "5432:5432"  # Exponemos el puerto de PostgreSQL (para acceso desde fuera del contenedor, si es necesario)
+    networks:
+      - app-network
+  
+  frontend:
+    build:
+      context: adres-front
+    ports:
+      - "4200:80"  # El puerto 4200 en el host mapea al puerto 80 en el contenedor (Nginx)
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
